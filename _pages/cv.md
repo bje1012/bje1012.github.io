@@ -1,10 +1,7 @@
 ---
 layout: cv
 permalink: /cv/
-title: cv
+title: CV
 nav: true
-cv_pdf: Academic-CV-Jieun-Byeon.pdf 
-description:
-toc:
-  sidebar: left
+cv_pdf: Academic-CV-Jieun-Byeon.pdf
 ---
