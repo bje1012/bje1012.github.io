@@ -17,10 +17,11 @@
 
     - title: M.A. Political Science
       institution: National Taiwan University, Taipei, Taiwan
-      year: September 2019 - Janumary 2023
+      year: September 2019 - January 2023
       description:
-        - Concentrations: International Relations (Major), National Politics (Minor)
-        - Thesis: "Adjustments to Patterns of Hedging Among East Asian Allies Case Studies of South Korea and Japan" (Advisor: Hsiao-chuan Liao)
+      - Concentrations: International Relations (Major), National Politics (Minor)
+      - Thesis: "Adjustments to Patterns of Hedging Among East Asian Allies: Case Studies of South Korea and Japan" (Advisor: Hsiao-chuan Liao)
+
 
     - title: B.A.A. Business Administration and B.A. Chinese Culture
       institution: Sogang University, Seoul, Republic of Korea
@@ -88,6 +89,13 @@
         - POLI105 Introduction to Politics (Instructor: Dr. Keland Lu),  University of South Carolina, Spring 2025
         - POLI 304 Contemporary Political Theory (Instructor: Dr. Samuel Bagg), University of South Carolina, Fall 2024
         - Contemporary Asia (Instructor: Dr. Philip Yang), National Taiwan University, Spring 2021 and Spring 2022
+
+- title: Conference Presentations
+  type: nested_list
+  contents:
+    - title: “Determining Duration: How Types of External Support Shape Civil Conflicts”
+    - title: “China in Myanmar: Understanding Motives and Modes of Intervention in Civil Conflict”
+
 
 - title: Open Source Projects
   type: time_table
