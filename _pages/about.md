@@ -19,4 +19,4 @@ I am a Ph.D. student in Political Science at the University of South Carolina. I
 
 My research focuses on the dynamics within intrastate wars, with a particular emphasis on third-party interventions. It examines the strategic decision-making processes that influence the duration and outcomes of civil conflicts, and the role of major regional powers as third-party sponsors to the war. 
 
-You can reach out to me at: <a href="mailto:trademark&#64;jbyeon@email.sc.edu">jbyeon@email.sc.edu</a>
+You can reach out to me at: <a href="mailto:jbyeon@email.sc.edu">jbyeon@email.sc.edu</a>
