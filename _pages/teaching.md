@@ -1,12 +1,23 @@
 ---
 layout: page
 permalink: /teaching/
-title: teaching
-description: Materials for courses you taught. Replace this text with your description.
+title: Teaching
+description:
 nav: true
-nav_order: 6
 ---
 
-For now, this page is assumed to be a static description of your courses. You can convert it to a collection similar to `_projects/` so that you can have a dedicated page for each course.
+## Instructor
 
-Organize your courses by years, topics, or universities, however you like!
+- POLI 101 Introduction to Global Politics (Section Instructor), University of South Carolina, Fall 2023 and Spring 2024
+
+## Course Designer
+
+- POLI 502 Methods of Political Analysis (for Master of Arts in International Studies (MAIS) program)
+
+## Teaching Assistant
+
+- POLI105 Introduction to Politics (Instructor: Dr. Keland Lu),  University of South Carolina, Spring 2025
+
+- POLI 304 Contemporary Political Theory (Instructor: Dr. Samuel Bagg), University of South Carolina, Fall 2024
+
+- Contemporary Asia (Instructor: Dr. Philip Yang), National Taiwan University, Spring 2021 and Spring 2022
