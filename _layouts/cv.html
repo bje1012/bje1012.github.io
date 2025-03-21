@@ -9,7 +9,7 @@ layout: default
     <p class="post-description">{{ page.description }}</p>
   </header>
 
-<embed src="/CV/Academic-CV-Jieun-Byeon.pdf" width="100%" height="600px" type="application/pdf">
+  {% pdf ""{{ page.cv_pdf | prepend: 'assets/pdf/' | relative_url}}" no_link %}
 
   <!-- <article>
     <div class="cv">
