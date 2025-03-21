@@ -20,7 +20,7 @@
       year: September 2019 - Janumary 2023
       description:
         - Concentrations: International Relations (Major), National Politics (Minor)
-        - Thesis: Adjustments to Patterns of Hedging Among East Asian Allies: Case Studies of South Korea and Japan (Advisor: Hsiao-chuan Liao)
+        - Thesis: "Adjustments to Patterns of Hedging Among East Asian Allies: Case Studies of South Korea and Japan" (Advisor: Hsiao-chuan Liao)
 
     - title: B.A.A. Business Administration and B.A. Chinese Culture
       institution: Sogang University, Seoul, Republic of Korea
@@ -75,6 +75,34 @@
       year: April 2021 - May 2021
       description:
         - Translated research questionnaires about the public perception of the COVID-19 vaccine
+
+- title: Teaching Experience
+  type: time_table
+  contents:
+    - title: Instructor
+      institution: University of South Carolina
+      year: January 2025 - Present
+      description:
+        - Coding/evaluating Large Language Model(LLM) performance
+
+    - title: Course Designer
+      institution: University of South Carolina
+      year: May 2024- August 2024
+      description:
+        - Served as the lead designer for POLI502 Methods of Political Analysis
+
+    - title: Research Assistant
+      institution: Dr. Howard Liu, University of South Carolina
+      year: January 2024- May 2024
+      description:
+        - Religious Repression Database Documentation
+
+     - title: Research Assistant
+      institution: Dr. Nien-Chung chang Liao, Academia Sinica
+      year: February 2021 - July 2022
+      description:
+        - Strategic Partnership Database Documentation
+
 
 - title: Open Source Projects
   type: time_table
