@@ -400,13 +400,13 @@ ninja.data = [{
             },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
           title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
           description: "",
-          section: "News",},{id: "projects-",
-          title: '',
+          section: "News",},{id: "projects-determining-duration",
+          title: 'Determining Duration',
           description: "",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
-            },},{id: "projects-",
-          title: '',
+            },},{id: "projects-china-in-myanmar",
+          title: 'China in Myanmar',
           description: "",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
