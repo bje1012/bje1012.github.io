@@ -2,7 +2,7 @@
 layout: page
 title: Determining Duration
 description: How Types of External Support Shape Civil Conflicts
-img: assets/img/support.png
+img: assets/img/support.jpg
 importance: 1
 category: work
 related_publications: false
