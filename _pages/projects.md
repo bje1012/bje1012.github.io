@@ -1,10 +1,10 @@
 ---
 layout: page
-title: projects
+title: Research
 permalink: /projects/
 description: 
 nav: true
-display_categories: [work, other]
+display_categories: [work]
 horizontal: false
 ---
 
