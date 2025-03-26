@@ -2,7 +2,7 @@
 layout: page
 title: China in Myanmar
 description: Understanding Motives and Modes of Intervention in Civil Conflict
-img: assets/img/myanmarchina.jpg
+img: assets/img/myanmarchina.jpeg
 importance: 2
 category: work
 giscus_comments: false
