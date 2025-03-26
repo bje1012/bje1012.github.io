@@ -16,8 +16,8 @@ ninja.data = [{
           handler: () => {
             window.location.href = "/cv/";
           },
-        },{id: "nav-projects",
-          title: "projects",
+        },{id: "nav-research",
+          title: "Research",
           description: "",
           section: "Navigation",
           handler: () => {
@@ -402,12 +402,12 @@ ninja.data = [{
           description: "",
           section: "News",},{id: "projects-determining-duration",
           title: 'Determining Duration',
-          description: "",
+          description: "How Types of External Support Shape Civil Conflicts",
           section: "Projects",handler: () => {
               window.location.href = "/projects/1_project/";
             },},{id: "projects-china-in-myanmar",
           title: 'China in Myanmar',
-          description: "",
+          description: "Understanding Motives and Modes of Intervention in Civil Conflict",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
             },},{
