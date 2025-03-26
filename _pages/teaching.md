@@ -16,7 +16,7 @@ nav: true
 
 ## Teaching Assistant
 
-- POLI105 Introduction to Politics (Instructor: Dr. Keland Lu),  University of South Carolina, Spring 2025
+- POLI105 Introduction to Politics (Instructor: Dr. Kelan Lu),  University of South Carolina, Spring 2025
 
 - POLI 304 Contemporary Political Theory (Instructor: Dr. Samuel Bagg), University of South Carolina, Fall 2024
 
