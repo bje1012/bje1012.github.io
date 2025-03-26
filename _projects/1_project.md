@@ -5,7 +5,6 @@ description:
 img: assets/img/12.jpg
 importance: 1
 category: work
-related_publications: true
 ---
 
 “Determining Duration: How Types of External Support Shape Civil Conflicts”
