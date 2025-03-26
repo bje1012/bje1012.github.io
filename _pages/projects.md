@@ -4,7 +4,7 @@ title: Research
 permalink: /projects/
 description: 
 nav: true
-display_categories: [Working Papers， Others]
+display_categories: [Working Papers, Others]
 horizontal: false
 ---
 
