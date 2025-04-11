@@ -26,7 +26,7 @@ nav: true
 
     .teaching-content ul li strong {
       font-size: 16px;
-      color: #A020F0;
+      color: #AB2FAB;
     }
 
     .teaching-content ul li p {
@@ -36,7 +36,7 @@ nav: true
     }
 
     .teaching-content ul li a {
-      color: #A020F0;
+      color: #AB2FAB;
       text-decoration: none;
       font-weight: bold;
     }
@@ -99,7 +99,7 @@ nav: true
   <br>
   <li>
    <strong>PS5066 Contemporary Asia (Instructor: Dr. Philip Yang), Spring 2021 and Spring 2022</strong>
-    <p>Department of Political Science, National Taiwan University</p>  </li>
+    <p>Department of Political Science, National Taiwan University</p>  
   </li>
 </ul>
 </div>
