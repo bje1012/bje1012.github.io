@@ -1,0 +1,11 @@
+---
+layout: page
+title: Framing Conflict
+description: Global Media Influence on the Type of Third-Party Intervention in Civil Wars
+img: assets/img/framing.png
+importance: 3
+category: Working Papers
+giscus_comments: false
+---
+
+How do media outlets influence the types of third-party intervention in civil wars? While prior research has explored the role of media in shaping public opinion and influencing state decisions to intervene, less attention has been paid to how the nature of media coverage affects how states intervene—whether through overt or covert means. I argue that media framing influences the strategic choices of intervening states. Specifically, global media coverage that emphasizes humanitarian crises increases the likelihood of overt intervention by generating public pressure for visible action. Conversely, media attention focused on the political dynamics of a conflict fosters covert support strategies among third parties that wish to provide assistance, as overt intervention in politically sensitive contexts carries a greater risk of domestic and international backlash. To demonstrate my argument, I build a dataset by collecting news articles covering civil wars from international news outlets such as The New York Times, The Wall Street Journal, and The Guardian, and apply automated text classification techniques by training a large language model (LLM) to distinguish between articles that emphasize humanitarian aspects—such as civilian casualties and human rights abuses—and those that focus on political dynamics, including regime change, power struggles, or strategic interests. This classification forms the explanatory variable in my analysis and allows for a quantitative examination of how different media narratives correlate with the form of external support (overt vs. covert) provided by third-party states. The new dataset on media framing of civil war interventions enables the quantitative validation of findings that have traditionally relied on qualitative research and provides insights into how global media coverage influences not only public opinion but also strategic governmental decisions during conflicts.
