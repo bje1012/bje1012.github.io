@@ -403,6 +403,11 @@ ninja.data = [{
           description: "Understanding Motives and Modes of Intervention in Civil Conflict",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
+            },},{id: "projects-framing-conflict",
+          title: 'Framing Conflict',
+          description: "Global Media Influence on the Type of Third-Party Intervention in Civil Wars",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/3_project/";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
