@@ -402,6 +402,11 @@ ninja.data = [{
           description: "Text mining using R selenium",
           section: "Projects",handler: () => {
               window.location.href = "/projects/4_project/";
+            },},{id: "projects-network-analysis-with-r",
+          title: 'Network Analysis with R',
+          description: "Network Analysis using Latent Space Model (LSM)",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/5_project/";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
