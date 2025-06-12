@@ -8,13 +8,10 @@ library(RSelenium)
 library(tidyverse)
 library(quanteda)
 library(kableExtra)
-</code></pre> <p>Then, run Geckodriver to start Selenium.</p> <p>You should download the <code class="language-plaintext highlighter-rouge">geckodriver.exe</code> file, Selenium server, and ChromeDriver (if you’re using Chrome to launch the browser), and save all of them in the same directory where you run this code.</p> <pre><code class="language-{r}"># Enter the code below in the terminal to run Geckodriver
-# java -Dwebdriver.gecko.driver="geckodriver.exe" -jar selenium-server-standalone-4.0.0-alpha-1.jar -port 4445
-
-remDr &lt;- remoteDriver(
+</code></pre> <p>Then, run Geckodriver to start Selenium.</p> <p>You should download the <code class="language-plaintext highlighter-rouge">geckodriver.exe</code> file, Selenium server, and ChromeDriver (if you’re using Chrome to launch the browser), and save all of them in the same directory where you run this code.</p> <p>Enter the code below in the terminal to run Geckodriver (In the terminal, make sure your current location is the same folder where all the files are saved): <code class="language-plaintext highlighter-rouge">java -Dwebdriver.gecko.driver="geckodriver.exe" -jar selenium-server-standalone-4.0.0-alpha-1.jar -port 4445</code></p> <pre><code class="language-{r}">remDr &lt;- remoteDriver(
   remoteServerAddr = 'localhost',  # Address of the Selenium server (localhost means it's running on your machine)
   port = 4445,                     # Port where the Selenium server is listening
-  browserName = "chrome"          # The browser to use for automation (e.g., Chrome)
+  browserName = "chrome"          # The browser to use for automation
 )
 
 # Start a browser session

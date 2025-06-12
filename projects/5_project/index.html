@@ -45,8 +45,8 @@ par(mfrow = c(1, 2))
 
 # Plots the first sample of 30 countries.
 # label = lab[vertex_ids] assigns country names as labels.
-#vertex.col = node_colors[...] assigns node colors based on democracy level.
-#mtext() adds the label "(a) Sample 1" below the plot.
+# vertex.col = node_colors[...] assigns node colors based on democracy level.
+# mtext() adds the label "(a) Sample 1" below the plot.
 plot(net_sub, label = lab[vertex_ids], vertex.col = node_colors[vertex_ids], edge.col = "gray", vertex.cex = 1, label.cex = 0.6)
 mtext("(a) Sample 1", side = 1, line = 2, cex = 1.2)
 
@@ -82,7 +82,6 @@ legend("bottom",
 plot(model1, plot.vars=FALSE, pad=0,  vertex.col = node_colors)
 plot(model1, what="pmean", plot.vars=FALSE, pad=0,  vertex.col = node_colors)
 </code></pre> <p>This code produces two side-by-side network plots based on your latent space model:</p> <p>(Left): One sample of the latent space configuration.</p> <p>(Right): The posterior mean of the latent positions.</p> <p>Both plots help visualize how countries are positioned in latent space, with nodes colored by regime type.</p> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/latent_space_plot-480.webp 480w,/assets/img/latent_space_plot-800.webp 800w,/assets/img/latent_space_plot-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/latent_space_plot.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <p>Below is the model that includes the key explanatory variable: democracy level.</p> <pre><code class="language-{r}">model2 &lt;- ergmm(net ~ nodematch("Democracy1", diff= TRUE) + euclidean(d=2), control = control.ergmm(burnin=250000), seed=10, verbose= TRUE)
-summary(model2)
 </code></pre> <p>Now, I include the controls to the model:</p> <pre><code class="language-{r}">model3 &lt;- ergmm(net ~ nodematch("Democracy1", diff= TRUE) + nodematch("Region", diff=FALSE) + nodematch("Income_group", diff=TRUE) + edgecov(alliance) + edgecov(supportgov) + euclidean(d=2), control = control.ergmm(burnin=250000), seed=10, verbose= TRUE)
 </code></pre> <p>Let’s take a look at the results.</p> <pre><code class="language-{r}">summary(model2)
 summary(model3)
