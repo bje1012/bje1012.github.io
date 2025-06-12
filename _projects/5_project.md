@@ -2,8 +2,8 @@
 layout: page
 title: Network Analysis with R
 description: Network Analysis using Latent Space Model (LSM)
-img: assets/img/textmining.png
-importance: 1
+img: assets/img/networkcov.png
+importance: 2
 category: Others
 giscus_comments: false
 ---
@@ -16,12 +16,19 @@ First, load the required packages:
 
 {% raw %}
 ```{r}
-library(network)library(sna)library(latentnet)library(viridis)library(knitr)library(kableExtra)library(dplyr)library(tidyverse)
+library(network)
+library(sna)
+library(latentnet)
+library(viridis)
+library(knitr)
+library(kableExtra)
+library(dplyr)
+library(tidyverse)
 ```
 {% endraw %}
 
 Second, load the network dataset.
-You can download the dataset <a href="assets/data/net.rds">here</a>
+You can download the dataset <a href=''https://bje1012.github.io/assets/data/net.rds'>here</a>
 
 {% raw %}
 ```{r}
@@ -66,7 +73,8 @@ Since the dataset includes too many countries, plotting all of them would result
 {% raw %}
 ```{r}
 # Set a random seed for reproducibility.
-# Ensures that the random sample drawn next is the same every time you run the codeset.seed(14)
+# Ensures that the random sample drawn next is the same every time you run the code
+set.seed(14)
 
 # Randomly selects 30 countries for the network
 selected_vertices <- sample(network.vertex.names(net), 30)
@@ -74,7 +82,8 @@ selected_vertices <- sample(network.vertex.names(net), 30)
 # Finds the indices (numeric positions) of the selected countries in the network.
 vertex_ids <- which(network.vertex.names(net) %in% selected_vertices)
 
-# Creates a subgraph that includes only the selected 30 countries and the connections among them.net_sub <- get.inducedSubgraph(net, v = vertex_ids)
+# Creates a subgraph that includes only the selected 30 countries and the connections among them.
+net_sub <- get.inducedSubgraph(net, v = vertex_ids)
 ```
 {% endraw %}
 
@@ -89,9 +98,16 @@ par(mfrow = c(1, 2))
 # label = lab[vertex_ids] assigns country names as labels.
 #vertex.col = node_colors[...] assigns node colors based on democracy level.
 #mtext() adds the label "(a) Sample 1" below the plot.
-plot(net_sub, label = lab[vertex_ids], vertex.col = node_colors[vertex_ids], edge.col = "gray", vertex.cex = 1, label.cex = 0.6)mtext("(a) Sample 1", side = 1, line = 2, cex = 1.2)
+plot(net_sub, label = lab[vertex_ids], vertex.col = node_colors[vertex_ids], edge.col = "gray", vertex.cex = 1, label.cex = 0.6)
+mtext("(a) Sample 1", side = 1, line = 2, cex = 1.2)
 
-# Repeats the above steps with a different random seed to generate a different subset of 30 countries.set.seed(128)selected_vertices1 <- sample(network.vertex.names(net), 30)vertex_ids1 <- which(network.vertex.names(net) %in% selected_vertices1)net_sub1 <- get.inducedSubgraph(net, v = vertex_ids1)plot(net_sub1, label = lab[vertex_ids], vertex.col = node_colors[vertex_ids], edge.col = "gray", vertex.cex = 1, label.cex = 0.6)mtext("(b) Sample 2", side = 1, line = 2, cex = 1.2)
+# Repeats the above steps with a different random seed to generate a different subset of 30 countries.
+set.seed(128)
+selected_vertices1 <- sample(network.vertex.names(net), 30)
+vertex_ids1 <- which(network.vertex.names(net) %in% selected_vertices1)
+net_sub1 <- get.inducedSubgraph(net, v = vertex_ids1)
+plot(net_sub1, label = lab[vertex_ids], vertex.col = node_colors[vertex_ids], edge.col = "gray", vertex.cex = 1, label.cex = 0.6)
+mtext("(b) Sample 2", side = 1, line = 2, cex = 1.2)
 
 # Resets the plotting window back to a single panel.
 par(mfrow=c(1,1))
@@ -103,7 +119,16 @@ par(xpd = NA)
 # The legend shows the meaning of node colors (regime types).
 # pch = 19 draws solid circle markers.
 # bty = "n" removes the box around the legend.
-legend("bottom",        inset = c(0, -0.25),         legend = labels,        col = color_map,        pch = 19,        pt.cex = 1,       cex = 1,       horiz = TRUE,       bty = "n")```
+legend("bottom", 
+       inset = c(0, -0.25),  
+       legend = labels, 
+       col = color_map, 
+       pch = 19, 
+       pt.cex = 1,
+       cex = 1,
+       horiz = TRUE,
+       bty = "n")
+```
 {% endraw %}
 
 <div class="row">
@@ -112,7 +137,9 @@ legend("bottom",        inset = c(0, -0.25),         legend = labels,        
     </div>
 </div>
 
-The code above create this network plot. It shows sample networks of two sets of 30 randomly selected external supporters, colored by their level of democracy. Both samples illustrate that most liberal democracies tend to have more ties, whereas autocracies are connected to only a few countries.To examine patterns of co-intervention among states in civil conflicts, I employ a Latent Space Model (LSM), a network model suited for analyzing relational data influenced by both observed covariates and unobserved structural dependencies. Latent space models are grounded in the assumption that dependencies in network data can be viewed as being the result of the distances between individuals in some social, physical, or other latent space, and that the likelihood of a tie is inversely related to the distance between nodes in this latent space.
+The code above create this network plot. It shows sample networks of two sets of 30 randomly selected external supporters, colored by their level of democracy. Both samples illustrate that most liberal democracies tend to have more ties, whereas autocracies are connected to only a few countries.
+
+To examine patterns of co-intervention among states in civil conflicts, I employ a Latent Space Model (LSM), a network model suited for analyzing relational data influenced by both observed covariates and unobserved structural dependencies. Latent space models are grounded in the assumption that dependencies in network data can be viewed as being the result of the distances between individuals in some social, physical, or other latent space, and that the likelihood of a tie is inversely related to the distance between nodes in this latent space.
 
 <p>
 The probability of an edge y<sub>ij</sub> between the two nodes <i>i</i> and <i>j</i> in the network is modeled as:
@@ -127,12 +154,19 @@ Where \( X_{ij} \) represents dyadic covariates, \( \beta \) is the vector of co
 </p>
 
 {% raw %}
-```{r}model1 <- ergmm(net ~ euclidean(d=2), verbose = TRUE, seed=125)```
+```{r}
+model1 <- ergmm(net ~ euclidean(d=2), verbose = TRUE, seed=125)
+```
 {% endraw %}
 
 This code estimates a baseline latent space model for your network, without covariates—just using latent distances to explain the presence of ties. It serves as a foundational model before adding node or dyadic covariates.
 
-{% raw %}```{r, echo=FALSE, warning=FALSE, fig.align='center'}par(mfrow=c(1,2))plot(model1, plot.vars=FALSE, pad=0,  vertex.col = node_colors)plot(model1, what="pmean", plot.vars=FALSE, pad=0,  vertex.col = node_colors)```
+{% raw %}
+```{r, echo=FALSE, warning=FALSE, fig.align='center'}
+par(mfrow=c(1,2))
+plot(model1, plot.vars=FALSE, pad=0,  vertex.col = node_colors)
+plot(model1, what="pmean", plot.vars=FALSE, pad=0,  vertex.col = node_colors)
+```
 {% endraw %}
 
 This code produces two side-by-side network plots based on your latent space model:
@@ -153,13 +187,18 @@ Below is the model that includes the key explanatory variable: democracy level.
 
 {% raw %}
 ```{r}
-model2 <- ergmm(net ~ nodematch("Democracy1", diff= TRUE) + euclidean(d=2), control = control.ergmm(burnin=250000), seed=10, verbose= TRUE)summary(model2)
-```{% endraw %}
+model2 <- ergmm(net ~ nodematch("Democracy1", diff= TRUE) + euclidean(d=2), control = control.ergmm(burnin=250000), seed=10, verbose= TRUE)
+summary(model2)
+```
+{% endraw %}
 
 Now, I include the controls to the model: 
 
 {% raw %}
-```{r}model3 <- ergmm(net ~ nodematch("Democracy1", diff= TRUE) + nodematch("Region", diff=FALSE) + nodematch("Income_group", diff=TRUE) + edgecov(alliance) + edgecov(supportgov) + euclidean(d=2), control = control.ergmm(burnin=250000), seed=10, verbose= TRUE)```{% endraw %}
+```{r}
+model3 <- ergmm(net ~ nodematch("Democracy1", diff= TRUE) + nodematch("Region", diff=FALSE) + nodematch("Income_group", diff=TRUE) + edgecov(alliance) + edgecov(supportgov) + euclidean(d=2), control = control.ergmm(burnin=250000), seed=10, verbose= TRUE)
+```
+{% endraw %}
 
 Let’s take a look at the results.
 
@@ -167,7 +206,8 @@ Let’s take a look at the results.
 ```{r}
 summary(model2)
 summary(model3)
-```{% endraw %}
+```
+{% endraw %}
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
@@ -175,7 +215,11 @@ summary(model3)
     </div>
 </div>
 
-The table presents the posterior estimates from two latent space models analyzing the probability that states co-intervene in the same civil war. Both models are estimated using Bayesian techniques and account for latent proximity between states. Model 1 includes only the key independent variable of this research—regime-type indicators, while Model 2 adds a set of control variables to the basic model. In Model 1, the coefficient for Liberal Democracies exhibits a positive association with co-intervention (2.65), suggesting that countries are more likely to coordinate intervention efforts when both are liberal democracies. In contrast, Electoral Autocracies have a negative effect, indicating that countries are less likely to support the same actor in civil wars if both belong to that regime type. These results provide support for my hypotheses in the case of liberal democracies and electoral autocracies, showing that democratic countries are more likely to co-intervene in the same civil war dyad and often align on the same side, while autocracies are not. However, the coefficients for Electoral Democracies and Closed Autocracies are not statistically significant, indicating weaker evidence for these categories.Model 2 tells a different story from Model 1. After controlling for additional covariates such as region, income group, and edge-level variables, the coefficient for Liberal Democracies becomes negative (–2.82), suggesting that the observed tendency of liberal democracies to co-intervene—seen in Model 1—is likely confounded by other factors. When those confounders are held constant, liberal democracies appear less likely to jointly intervene compared to other regime types. At the same time, Alliance Ties and Support to Government emerge as the main predictors of co-intervention. This indicates that countries that have formal alliances or common interests or support the government side over rebel groups are highly likely to intervene together, regardless of regime type.In addition, Model 2 shows that regional proximity and shared high-income or low-income status all positively predict co-intervention. This suggests that countries with similar geographic or economic characteristics are more likely to coordinate intervention efforts, possibly due to overlapping security concerns, economic interests, or regional institutional frameworks. For the model fit, Model 2 outperforms Model 1 across all BIC metrics, indicating that the inclusion of region, income group, and edge-level covariates improves explanatory power.
+The table presents the posterior estimates from two latent space models analyzing the probability that states co-intervene in the same civil war. Both models are estimated using Bayesian techniques and account for latent proximity between states. Model 1 includes only the key independent variable of this research—regime-type indicators, while Model 2 adds a set of control variables to the basic model. In Model 1, the coefficient for Liberal Democracies exhibits a positive association with co-intervention (2.65), suggesting that countries are more likely to coordinate intervention efforts when both are liberal democracies. In contrast, Electoral Autocracies have a negative effect, indicating that countries are less likely to support the same actor in civil wars if both belong to that regime type. These results provide support for my hypotheses in the case of liberal democracies and electoral autocracies, showing that democratic countries are more likely to co-intervene in the same civil war dyad and often align on the same side, while autocracies are not. However, the coefficients for Electoral Democracies and Closed Autocracies are not statistically significant, indicating weaker evidence for these categories.
+
+Model 2 tells a different story from Model 1. After controlling for additional covariates such as region, income group, and edge-level variables, the coefficient for Liberal Democracies becomes negative (–2.82), suggesting that the observed tendency of liberal democracies to co-intervene—seen in Model 1—is likely confounded by other factors. When those confounders are held constant, liberal democracies appear less likely to jointly intervene compared to other regime types. At the same time, Alliance Ties and Support to Government emerge as the main predictors of co-intervention. This indicates that countries that have formal alliances or common interests or support the government side over rebel groups are highly likely to intervene together, regardless of regime type.
+
+In addition, Model 2 shows that regional proximity and shared high-income or low-income status all positively predict co-intervention. This suggests that countries with similar geographic or economic characteristics are more likely to coordinate intervention efforts, possibly due to overlapping security concerns, economic interests, or regional institutional frameworks. For the model fit, Model 2 outperforms Model 1 across all BIC metrics, indicating that the inclusion of region, income group, and edge-level covariates improves explanatory power.
 
 
 
