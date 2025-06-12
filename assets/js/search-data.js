@@ -397,6 +397,11 @@ ninja.data = [{
           description: "Global Media Influence on the Type of Third-Party Intervention in Civil Wars",
           section: "Projects",handler: () => {
               window.location.href = "/projects/3_project/";
+            },},{id: "projects-text-mining-with-r",
+          title: 'Text Mining with R',
+          description: "Text mining using R selenium",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/4_project/";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',

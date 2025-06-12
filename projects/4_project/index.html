@@ -1,0 +1,146 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title> Text Mining with R | Jieun Byeon </title> <meta name="author" content="Jieun Byeon"> <meta name="description" content="Text mining using R selenium"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link defer rel="stylesheet" href="/assets/css/scholar-icons.css?62b2ac103a88034e6882a5be5f3e2772"> <link defer rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons&amp;display=swap"> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?591dab5a4e56573bf4ef7fd332894c99" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="/assets/img/usclogo.jpg?261428e9b32884a24bdce428131b653b"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://bje1012.github.io/projects/4_project/"> <script src="/assets/js/theme.js?9a0c749ec5240d9cda97bc72359a72c0"></script> <link defer rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?5847e5ed4a4568527aa6cfab446049ca" media="none" id="highlight_theme_dark"> <script>
+    initTheme();
+  </script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top" role="navigation"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/"> <span class="font-weight-bold">Jieun</span> Byeon </a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About </a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV </a> </li> <li class="nav-item active"> <a class="nav-link" href="/projects/">Research <span class="sr-only">(current)</span> </a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">Teaching </a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="ti ti-sun-moon" id="light-toggle-system"></i> <i class="ti ti-moon-filled" id="light-toggle-dark"></i> <i class="ti ti-sun-filled" id="light-toggle-light"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5" role="main"> <div class="post"> <header class="post-header"> <h1 class="post-title">Text Mining with R</h1> <p class="post-description">Text mining using R selenium</p> </header> <article> <p>This page is just a document I worked on for fun in my free time. It explains text mining using R and Selenium and analyzes reviews of Titane, a film by director Julia Ducournau, which is one of my favorites. The analysis includes sentiment analysis and an examination of frequently used emotionally expressive words.</p> <p>First, load the required packages:</p> <p>```{r, echo=TRUE, results=’hide’, warning=FALSE, message=FALSE} library(multilinguer) library(rJava) rJava::.jinit() pacman::p_load(gt, rvest, tidyverse, tuber, httpuv, dplyr, tidytext, stringr) library(RSelenium) library(tidyverse) library(quanteda) library(kableExtra)</p> <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+
+Then, run Geckodriver to start Selenium.
+
+You should download the geckodriver.exe file, Selenium server, and ChromeDriver (if you're using Chrome to launch the browser), and save all of them in the same directory where you run this code.
+
+
+```{r, echo=TRUE, results='hide'}
+# Enter the code below in the terminal to run Geckodriver
+# java -Dwebdriver.gecko.driver="geckodriver.exe" -jar selenium-server-standalone-4.0.0-alpha-1.jar -port 4445
+
+remDr &lt;- remoteDriver(
+  remoteServerAddr = 'localhost',  # Address of the Selenium server (localhost means it's running on your machine)
+  port = 4445,                     # Port where the Selenium server is listening
+  browserName = "chrome"          # The browser to use for automation (e.g., Chrome)
+)
+
+# Start a browser session
+remDr$open()
+</code></pre></div></div> <p>The next step is to set the URL of the page I want to access. In this case, it’s the review page for Titane on Rotten Tomatoes.</p> <pre><code class="language-{r}"># The URL address that I want to access
+url &lt;- "https://www.rottentomatoes.com/m/titane/reviews"  # URL of the movie review page
+
+# Navigate to the specified URL using Selenium
+remDr$navigate(url)  # Direct the browser to open the given URL
+</code></pre> <p>Since the page requires clicking the “Load More” button to view additional reviews, I need to set up a loop to handle this automatically. Once the loop is written, I no longer have to click the button manually to scrape the reviews.</p> <p>Since the page is overflowing with reviews, I capped the number of clicks at 10 — just enough to get the data I need without sending my computer into a meltdown or accidentally scraping until the end of time.</p> <pre><code class="language-{r}"># Set a limit on how many times to click the "Load More" button
+max_clicks &lt;- 10     # Maximum number of times to try clicking the "Load More" button
+clicks &lt;- 0          # Initialize the click counter
+
+# Start a repeat loop to load more reviews by clicking the "Load More" button
+repeat {
+  # Exit the loop if the maximum number of clicks has been reached
+  if (clicks &gt;= max_clicks) {
+    message("Reached maximum number of clicks. Exiting loop.")  # Print a message to the console
+    break  # Stop the loop
+  }
+
+  # Try to locate the "Load More" button using a CSS selector
+  load_more_btn &lt;- tryCatch({
+    remDr$findElement(using = "css selector", "rt-button[data-LoadMoreManager='btnLoadMore:click']")
+  }, error = function(e) NULL)  # If the button is not found, return NULL
+
+  # If no "Load More" button is found, assume all reviews are loaded
+  if (is.null(load_more_btn)) {
+    message("All comments loaded. Exiting loop.")  # Print a message
+    break  # Stop the loop
+  }
+
+  # Try clicking the button and wait briefly
+  tryCatch({
+    load_more_btn$clickElement()  # Click the "Load More" button
+    Sys.sleep(2)                  # Wait 2 seconds for new content to load
+    clicks &lt;- clicks + 1          # Increment the click counter
+  }, error = function(e) {
+    message("Failed to click the button. Exiting loop.")  # If an error occurs, print message
+    break  # Stop the loop
+  })
+}
+
+# Get the HTML source of the fully loaded page
+page_source &lt;- remDr$getPageSource()[[1]]  # Retrieve the HTML source code
+html_content &lt;- read_html(page_source)     # Parse the HTML content
+
+# Extract reviewer names from the HTML
+reviewer_names &lt;- html_content %&gt;%
+  html_nodes(".reviewer-name-and-publication .display-name") %&gt;%  # Select reviewer name elements
+  html_text(trim = TRUE)  # Extract and trim the text
+
+# Extract review texts from the HTML
+review_texts &lt;- html_content %&gt;%
+  html_nodes(".review-text") %&gt;%  # Select review body elements
+  html_text(trim = TRUE)  # Extract and trim the text
+
+# Combine reviewer names and reviews into a data frame
+reviews_data &lt;- data.frame(
+  Reviewer = reviewer_names,  # Column for reviewer names
+  Review = review_texts,      # Column for review texts
+  stringsAsFactors = FALSE    # Keep character strings as-is (not factors)
+)
+</code></pre> <p>Okay! Here’s a table showing the first 5 rows of the reviews. Looks like the loop did its job nicely.</p> <pre><code class="language-{r}"># The first 5 rows of the collected review data
+Table &lt;- head(reviews_data, 5)
+
+# Show the first 5 rows as a nicely formatted table
+Table %&gt;%
+  kable() %&gt;%
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped", "hover"))
+</code></pre> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/cap1-480.webp 480w,/assets/img/cap1-800.webp 800w,/assets/img/cap1-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/cap1.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <p>The next step is sentiment analysis. I used the LSD2015 dictionary to get the job done.</p> <pre><code class="language-{r}"># Load review texts into a quanteda corpus object from the 'Review' column
+reviews_corpus &lt;- corpus(reviews_data,
+                         text_field = "Review")
+
+# Perform dictionary-based sentiment analysis using the LSD2015 dictionary:
+# 1. Tokenize the corpus into words
+# 2. Look up tokens in the sentiment dictionary
+# 3. Create a document-feature matrix (dfm)
+# 4. Convert the dfm into a standard data.frame for easier manipulation
+reviews_sentiment &lt;- tokens(reviews_corpus) |&gt;
+  tokens_lookup(data_dictionary_LSD2015) |&gt;
+  dfm() |&gt;
+  convert(to = "data.frame")
+
+# Compute a log-based sentiment score:
+# (positive + neg_negative) / (negative + neg_positive)
+# where 'neg_negative' are words with negative valence used in a positive context,
+# and 'neg_positive' are words with positive valence used in a negative context.
+# 0.5 is added to numerator and denominator for smoothing (Laplace correction).
+reviews_sentiment &lt;- reviews_sentiment |&gt;
+  mutate(sentiment =
+           log((positive + neg_negative + 0.5) /
+                 (negative + neg_positive + 0.5)))
+</code></pre> <pre><code class="language-{r}">ggplot(reviews_sentiment, aes(x = sentiment)) +
+  geom_histogram(binwidth = 0.5, fill = "steelblue", color = "white", boundary = 0) +
+  geom_vline(aes(xintercept = mean(sentiment)), color = "red", linetype = "dashed") +
+  labs(
+    title = "",
+    x = "\nSentiment Score (log ratio)",
+    y = "Number of Reviews\n"
+  ) +
+  theme_minimal()
+</code></pre> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/cap2-480.webp 480w,/assets/img/cap2-800.webp 800w,/assets/img/cap2-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/cap2.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <p>The graph shows that most reviews are clustered around neutral, with a slight lean toward negativity overall.</p> <p>To better understand this, I also tokenized the reviews and created a plot to show word frequencies.</p> <pre><code class="language-{r}"># Tokenize the reviews into individual words (1 word per row)
+ut1 &lt;- reviews_data %&gt;%
+  unnest_tokens(input = Review, output = word, token = "words")
+
+# Extract word lists from the LSD2015 dictionary
+lsd_words &lt;- unlist(data_dictionary_LSD2015) |&gt; unique()
+
+# Only include the words from the dictionary
+cf &lt;- ut1 %&gt;%
+  count(word, sort=T) %&gt;%
+  filter(word %in% lsd_words)
+
+# Select the top 20 most frequent content words
+top &lt;- head(cf, 20)
+
+# Plot a horizontal bar chart showing word frequencies
+ggplot(top, aes(x = reorder(word, -n), y = n)) +
+  geom_bar(stat = "identity") +      # Draw bars
+  coord_flip() +                     # Flip axes for readability
+  labs(title = "",     # Add title and axis labels
+       x = "Word\n",
+       y = "\nFrequency") +
+  theme_minimal()                    # Use a clean minimal theme
+</code></pre> <div class="row"> <div class="col-sm mt-3 mt-md-0"> <figure> <picture> <source class="responsive-img-srcset" srcset="/assets/img/cap3-480.webp 480w,/assets/img/cap3-800.webp 800w,/assets/img/cap3-1400.webp 1400w," type="image/webp" sizes="95vw"></source> <img src="/assets/img/cap3.png" class="img-fluid rounded z-depth-1" width="100%" height="auto" title="example image" loading="eager" onerror="this.onerror=null; $('.responsive-img-srcset').remove();"> </picture> </figure> </div> </div> <p>It seems the summary leans slightly negative because the film includes shocking scenes and conveys strong emotions like pain.</p> <p>After finish the analysis, don’t forget to close the browser!</p> <pre><code class="language-{r}">remDr$close()
+</code></pre> <p>This little project was just a fun way for me to try out some text mining and sentiment analysis using R and Selenium. By scraping and analyzing reviews of Titane, I got a glimpse into how people responded emotionally to the film. It was interesting to see how certain words stood out and how patterns emerged from the data. Hope you found this walk-through interesting or helpful in some way!</p> </article> </div> </div> <footer class="fixed-bottom" role="contentinfo"> <div class="container mt-0"> © Copyright 2025 Jieun Byeon. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js" integrity="sha256-htrLFfZJ6v5udOG+3kNLINIKh2gvoKqwEhHYfTTMICc=" crossorigin="anonymous"></script> <script defer src="/assets/js/masonry.js?a0db7e5d5c70cc3252b3138b0c91dcaf" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.1.0/dist/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?85ddb88934d28b74e78031fd54cf8308"></script> <script src="/assets/js/no_defer.js?2781658a0a2b13ed609542042a859126"></script> <script defer src="/assets/js/common.js?e0514a05c5c95ac1a93a8dfd5249b92e"></script> <script defer src="/assets/js/copy_code.js?12775fdf7f95e901d7119054556e495f" type="text/javascript"></script> <script defer src="/assets/js/jupyter_new_tab.js?d9f17b6adc2311cbabd747f4538bb15f"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-mml-chtml.js" integrity="sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI=" crossorigin="anonymous"></script> <script src="/assets/js/mathjax-setup.js?a5bb4e6a542c546dd929b24b8b236dfd"></script> <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6" crossorigin="anonymous"></script> <script defer src="/assets/js/progress-bar.js?2f30e0e6801ea8f5036fa66e1ab0a71a" type="text/javascript"></script> <script src="/assets/js/vanilla-back-to-top.min.js?f40d453793ff4f64e238e420181a1d17"></script> <script>
+    addBackToTop();
+  </script> </body> </html>
