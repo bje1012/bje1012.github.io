@@ -407,6 +407,11 @@ ninja.data = [{
           description: "Network Analysis using Latent Space Model (LSM) with R",
           section: "Projects",handler: () => {
               window.location.href = "/projects/5_project/";
+            },},{id: "projects-basics-of-data-visualization",
+          title: 'Basics of Data Visualization',
+          description: "Data visualization with R and ggplot2",
+          section: "Projects",handler: () => {
+              window.location.href = "/projects/6_project/";
             },},{
       id: 'light-theme',
       title: 'Change theme to light',
