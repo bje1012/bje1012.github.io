@@ -29,15 +29,15 @@ Then, run Geckodriver to start Selenium.
 
 You should download the `geckodriver.exe` file, Selenium server, and ChromeDriver (if you're using Chrome to launch the browser), and save all of them in the same directory where you run this code.
 
+Enter the code below in the terminal to run Geckodriver (In the terminal, make sure your current location is the same folder where all the files are saved): 
+`java -Dwebdriver.gecko.driver="geckodriver.exe" -jar selenium-server-standalone-4.0.0-alpha-1.jar -port 4445`
+
 {% raw %}
 ```{r}
-# Enter the code below in the terminal to run Geckodriver
-# java -Dwebdriver.gecko.driver="geckodriver.exe" -jar selenium-server-standalone-4.0.0-alpha-1.jar -port 4445
-
 remDr <- remoteDriver(
   remoteServerAddr = 'localhost',  # Address of the Selenium server (localhost means it's running on your machine)
   port = 4445,                     # Port where the Selenium server is listening
-  browserName = "chrome"          # The browser to use for automation (e.g., Chrome)
+  browserName = "chrome"          # The browser to use for automation
 )
 
 # Start a browser session

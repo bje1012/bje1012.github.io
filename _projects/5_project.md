@@ -98,8 +98,8 @@ par(mfrow = c(1, 2))
 
 # Plots the first sample of 30 countries.
 # label = lab[vertex_ids] assigns country names as labels.
-#vertex.col = node_colors[...] assigns node colors based on democracy level.
-#mtext() adds the label "(a) Sample 1" below the plot.
+# vertex.col = node_colors[...] assigns node colors based on democracy level.
+# mtext() adds the label "(a) Sample 1" below the plot.
 plot(net_sub, label = lab[vertex_ids], vertex.col = node_colors[vertex_ids], edge.col = "gray", vertex.cex = 1, label.cex = 0.6)
 mtext("(a) Sample 1", side = 1, line = 2, cex = 1.2)
 
@@ -192,7 +192,6 @@ Below is the model that includes the key explanatory variable: democracy level.
 {% raw %}
 ```{r}
 model2 <- ergmm(net ~ nodematch("Democracy1", diff= TRUE) + euclidean(d=2), control = control.ergmm(burnin=250000), seed=10, verbose= TRUE)
-summary(model2)
 ```
 {% endraw %}
 
