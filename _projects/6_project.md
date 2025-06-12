@@ -8,8 +8,11 @@ category: Others
 giscus_comments: false
 ---
 
-This is presentation slides that I made for explaining the basics of data visualization. It can be downloaded <a href='https://bje1012.github.io/assets/pdf/BasicsofDataVisualization.pdf'>here</a> 
+<p>
+These are the presentation slides I created to explain the basics of data visualization. You can download them <a href="https://bje1012.github.io/assets/pdf/BasicsofDataVisualization.pdf">here</a>.
+</p>
 
 <div class="container">
     <embed src="https://bje1012.github.io/assets/pdf/BasicsofDataVisualization.pdf" width="100%" height="600px" />
 </div>
+
