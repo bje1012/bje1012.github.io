@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Network Analysis with R
-description: Network Analysis using Latent Space Model (LSM)
+description: Network Analysis using Latent Space Model (LSM) with R
 img: assets/img/networkcov.png
 importance: 2
 category: Others
@@ -28,7 +28,7 @@ library(tidyverse)
 {% endraw %}
 
 Second, load the network dataset.
-You can download the dataset <a href=''https://bje1012.github.io/assets/data/net.rds'>here</a>
+You can download the dataset <a href='https://bje1012.github.io/assets/data/net.rds'>here</a>
 
 {% raw %}
 ```{r}
@@ -47,6 +47,7 @@ To visualize the network, I create a network plot using the dataset, with nodes 
 The first step is to assign a color to each country based on its level of democracy.
 
 {% raw %}
+```{r}
 # Extract the names of the nodes (i.e., countries) from the network object
 lab <- network.vertex.names(net)
 
@@ -66,6 +67,7 @@ color_map = setNames(colors, unique_polyarchy)
 
 # Assign a specific color to each node based on its regime type
 node_colors <- color_map[as.character(net %v% "Democracy1")]
+```
 {% endraw %}
 
 Since the dataset includes too many countries, plotting all of them would result in a cluttered and unreadable graph. So, I randomly selected 30 countries to include in the plot.
@@ -137,7 +139,7 @@ legend("bottom",
     </div>
 </div>
 
-The code above create this network plot. It shows sample networks of two sets of 30 randomly selected external supporters, colored by their level of democracy. Both samples illustrate that most liberal democracies tend to have more ties, whereas autocracies are connected to only a few countries.
+The plot shows sample networks of two sets of 30 randomly selected external supporters, colored by their level of democracy. Both samples illustrate that most liberal democracies tend to have more ties, whereas autocracies are connected to only a few countries.
 
 To examine patterns of co-intervention among states in civil conflicts, I employ a Latent Space Model (LSM), a network model suited for analyzing relational data influenced by both observed covariates and unobserved structural dependencies. Latent space models are grounded in the assumption that dependencies in network data can be viewed as being the result of the distances between individuals in some social, physical, or other latent space, and that the likelihood of a tie is inversely related to the distance between nodes in this latent space.
 
@@ -162,7 +164,7 @@ model1 <- ergmm(net ~ euclidean(d=2), verbose = TRUE, seed=125)
 This code estimates a baseline latent space model for your network, without covariates—just using latent distances to explain the presence of ties. It serves as a foundational model before adding node or dyadic covariates.
 
 {% raw %}
-```{r, echo=FALSE, warning=FALSE, fig.align='center'}
+```{r}
 par(mfrow=c(1,2))
 plot(model1, plot.vars=FALSE, pad=0,  vertex.col = node_colors)
 plot(model1, what="pmean", plot.vars=FALSE, pad=0,  vertex.col = node_colors)
