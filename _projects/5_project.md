@@ -144,15 +144,17 @@ The plot shows sample networks of two sets of 30 randomly selected external supp
 To examine patterns of co-intervention among states in civil conflicts, I employ a Latent Space Model (LSM), a network model suited for analyzing relational data influenced by both observed covariates and unobserved structural dependencies. Latent space models are grounded in the assumption that dependencies in network data can be viewed as being the result of the distances between individuals in some social, physical, or other latent space, and that the likelihood of a tie is inversely related to the distance between nodes in this latent space.
 
 <p>
-The probability of an edge y<sub>ij</sub> between the two nodes <i>i</i> and <i>j</i> in the network is modeled as:
+The probability of an edge \( y_{ij} \) between the two nodes \( i \) and \( j \) in the network is modeled as:
 </p>
 
 <p>
-logit(Pr(y<sub>ij</sub> = 1)) = η<sub>ij</sub> = β₀ + X<sub>ij</sub>β − d(z<sub>i</sub>, z<sub>j</sub>)
+$$
+\text{logit}(\Pr(y_{ij} = 1)) = \eta_{ij} = \beta_0 + X_{ij} \beta - d(z_i, z_j)
+$$
 </p>
 
 <p>
-Where \( X_{ij} \) represents dyadic covariates, \( \beta \) is the vector of coefficients associated with the covariates, and \( d(z_i, z_j) \) is the Euclidean distance between the latent positions \( z_i \) and \( z_j \) in an unobserved social space.
+Here, \( X_{ij} \) represents dyadic covariates, \( \beta \) is the vector of coefficients associated with the covariates, and \( d(z_i, z_j) \) is the Euclidean distance between the latent positions \( z_i \) and \( z_j \) in an unobserved social space.
 </p>
 
 {% raw %}
