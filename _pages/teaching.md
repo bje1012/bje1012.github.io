@@ -95,7 +95,6 @@ nav: true
    <strong>POLI 502 Methods of Political Analysis (for Master of Arts in International Studies (MAIS) program)</strong>
     <p>Department of Political Science, University of South Carolina</p>
  </li>
-</ul>
 
 <h2>Teaching Assistant</h2>
 <ul>
