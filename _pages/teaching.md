@@ -81,10 +81,16 @@ nav: true
 <h2>Course Designer</h2>
 <ul>
   <li>
-    <strong>POLI 706 Advanced Methods of Political Analysis (for Master of Arts in International Studies (MAIS) program)</strong>
+    <strong>
+      POLI 706 Advanced Methods of Political Analysis 
+      (for Master of Arts in International Studies (MAIS) program)
+    </strong>
     <p>Department of Political Science, University of South Carolina</p>
-  </li>
- <br>
+    <p>
+      <a href="https://github.com/bje1012/MAIS_POLI706.git" target="_blank">
+        MAIS POLI 706 Github
+      </a>
+    </p>
  <li>
    <strong>POLI 502 Methods of Political Analysis (for Master of Arts in International Studies (MAIS) program)</strong>
     <p>Department of Political Science, University of South Carolina</p>
