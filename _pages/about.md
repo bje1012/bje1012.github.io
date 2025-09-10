@@ -6,7 +6,7 @@ subtitle: Ph.D. Student, <a href='https://sc.edu/study/colleges_schools/artsands
 
 profile:
   align: right
-  image: profile1.jpg
+  image: profile.jpg
   image_circular: false 
   more_info: >
     <p></p>
