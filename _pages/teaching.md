@@ -112,5 +112,4 @@ nav: true
     <p>Department of Political Science, National Taiwan University</p>  
   </li>
 </ul>
-</div>
 
