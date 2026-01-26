@@ -394,7 +394,7 @@ ninja.data = [{
               window.location.href = "/projects/2_project/";
             },},{id: "projects-framing-conflict",
           title: 'Framing Conflict',
-          description: "Global Media Influence on the Type of Third-Party Intervention in Civil Wars",
+          description: "Leveraging Large Language Models for Cross-National Media Framing Analysis",
           section: "Projects",handler: () => {
               window.location.href = "/projects/3_project/";
             },},{id: "projects-text-mining-with-r",
