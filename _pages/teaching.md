@@ -97,8 +97,13 @@ nav: true
     </strong>
     <p>Department of Political Science, University of South Carolina</p>
     <p>
-      <a href="https://github.com/bje1012/MAIS_POLI706.git" target="_blank">
-        MAIS POLI 706 Github
+      <a href="/Users/jieun/Desktop/bje1012.github.io/assets/pdf/POLI706_v2.pdf">
+        Syllabus
+      </a>
+    </p>
+    <p>
+      <a href="https://github.com/bje1012/MAIS_POLI706.git">
+        Github
       </a>
     </p>
  <li>
