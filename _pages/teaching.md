@@ -73,6 +73,15 @@ nav: true
 <h2>Instructor</h2>
 <ul>
   <li>
+    <strong>POLI 101 Introduction to Global Politics, Spring 2026</strong>
+    <p>
+      <a href="/assets/pdf/POLI101.pdf" target="_blank">
+        Syllabus
+      </a>
+    </p>  
+    </li>
+  
+    <li>
     <strong>POLI 101 Introduction to Global Politics (Section Instructor), Fall 2023 and Spring 2024</strong>
     <p>Department of Political Science, University of South Carolina</p>
   </li>
