@@ -97,7 +97,7 @@ nav: true
     </strong>
     <p>Department of Political Science, University of South Carolina</p>
     <p>
-      <a href="/Users/jieun/Desktop/bje1012.github.io/assets/pdf/POLI706_v2.pdf">
+      <a href="/assets/pdf/POLI706_v2.pdf">
         Syllabus
       </a>
     </p>
