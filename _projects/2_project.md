@@ -1,7 +1,7 @@
 ---
 layout: page
 title: China in Myanmar
-description: Understanding Motives and Modes of Intervention in Civil Conflict
+description: Issue-Specific Interests and Spatial Dynamics of Violence in Civil Conflict
 img: assets/img/myanmarchina.jpg
 importance: 2
 category: Working Papers
@@ -14,4 +14,4 @@ giscus_comments: false
     </div>
 </div>
 
-This study investigates the conditions under which China intervenes in Myanmar’s long-running civil war, focusing on the motivations and timing of support for either the Myanmar government or rebel groups. Despite increasing recognition of China’s role as a regional hegemon with deep economic and security interests in Myanmar, existing literature lacks a systematic, data-driven analysis of its interventions. To address this gap, the study develops an original dataset of Chinese interventions from 2010 to 2024, capturing diplomatic, economic, and political activities not covered in existing sources by collecting formal diplomatic documents and news articles and analyzing them using text analysis methods. The findings aim to clarify the strategic logic of third-party involvement in civil wars and contribute to broader debates on foreign intervention, regional security, and the economic dimensions of international conflict.
+How do different types of external interests shape the dynamics of civil wars? This study analyzes conflict fatalities in Myanmar between 2011 and 2025 and examines how different types of Chinese interests are associated with both overall conflict fatalities and fatalities in regions bordering China. To operationalize Chinese interests, I analyze news coverage from China Daily and categorize the themes of the articles using BERTopic. The results reveal heterogeneous effects across issue areas and locations. Chinese political interests and development-related interests are associated with higher overall conflict fatalities but lower fatalities in regions bordering China. In contrast, interests related to drug trafficking and fraud show no statistically significant relationship with conflict fatalities. Finally, interests in regional cooperation are associated with increases in both overall fatalities and fatalities near the border. The study contributes to the literature on external intervention in civil wars by demonstrating how issue-specific interests of external actors can produce heterogeneous effects across locations within a conflict.
