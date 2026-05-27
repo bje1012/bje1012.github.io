@@ -378,7 +378,7 @@ ninja.data = [{
               window.location.href = "/projects/1_project/";
             },},{id: "projects-china-in-myanmar",
           title: 'China in Myanmar',
-          description: "Understanding Motives and Modes of Intervention in Civil Conflict",
+          description: "Issue-Specific Interests and Spatial Dynamics of Violence in Civil Conflict",
           section: "Projects",handler: () => {
               window.location.href = "/projects/2_project/";
             },},{id: "projects-framing-conflict",
