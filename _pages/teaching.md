@@ -114,6 +114,22 @@ nav: true
 <h2>Teaching Assistant</h2>
 <ul>
   <li>
+    <strong>ICPSR Summer Program, Introduction to Python (Instructor: Dr. Will Horne), Summer 2026</strong>
+    <p>University of Michigan</p>
+  </li>
+  <br>
+  <li>
+    <strong>ICPSR Summer Program, Network Analysis I: Introduction (Instructor: Dr. Sarah Shugars), Summer 2026</strong>
+    <p>University of Michigan</p>
+  </li>
+  <br>
+  <li>
+    <strong>POLI340 The Conduct and Formulation of United States Foreign Policy (Instructor: Dr. John Fuh-sheng
+Hsieh), Fall 2025</strong>
+    <p>Department of Political Science, University of South Carolina</p>
+  </li>
+  <br>
+  <li>
     <strong>POLI105 Introduction to Politics (Instructor: Dr. Kelan Lu), Spring 2025</strong>
     <p>Department of Political Science, University of South Carolina</p>
   </li>
